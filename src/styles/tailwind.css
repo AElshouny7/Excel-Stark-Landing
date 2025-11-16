@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base reset + typography */
+:root {
+  color-scheme: dark light;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-industrial-steel text-slate-100 font-sans antialiased;
+}
+
+/* Focus outlines for a11y */
+:where(a, button, input, textarea, [tabindex]):focus-visible {
+  @apply outline-none ring-2 ring-industrial-orange ring-offset-2 ring-offset-slate-900;
+}

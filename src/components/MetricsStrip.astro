@@ -1,0 +1,17 @@
+---
+import { site } from '@content/site';
+---
+
+<section aria-label="Key metrics" class="bg-slate-950">
+  <div class="container py-8 grid gap-6 md:grid-cols-4">
+    {site.metrics.map((m) => (
+      <div class="space-y-1">
+        <div class="text-xl font-semibold text-white">{m.value}</div>
+        <div class="text-xs font-medium uppercase tracking-wide text-slate-400">
+          {m.label}
+        </div>
+        {m.helper && <p class="text-xs text-slate-500">{m.helper}</p>}
+      </div>
+    ))}
+  </div>
+</section>

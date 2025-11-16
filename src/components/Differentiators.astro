@@ -1,0 +1,28 @@
+---
+import { site } from '@content/site';
+---
+
+<section class="bg-slate-900/80 border-t border-slate-800">
+  <div class="container py-16 grid gap-8 lg:grid-cols-[1.2fr_1.4fr]">
+    <div>
+      <p class="text-xs font-semibold uppercase tracking-[0.2em] text-industrial-orange">
+        Why Excel Stark
+      </p>
+      <h2 class="mt-2 text-2xl font-semibold">
+        Global standards, local support.
+      </h2>
+      <p class="mt-3 text-sm text-slate-300">
+        With engineering completed in Europe and field teams across the Middle East, Excel Stark
+        combines rapid calculation turnaround with on-site presence where it matters most.
+      </p>
+    </div>
+    <ul class="space-y-2 text-sm text-slate-300">
+      {site.differentiators.map((d) => (
+        <li class="flex gap-2">
+          <span class="mt-1 h-1.5 w-4 rounded-full bg-industrial-orange"></span>
+          <span>{d}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

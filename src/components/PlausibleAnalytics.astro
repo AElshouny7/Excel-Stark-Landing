@@ -1,0 +1,34 @@
+---
+const domain = import.meta.env.PUBLIC_PLAUSIBLE_DOMAIN;
+const enabled = import.meta.env.PROD && domain;
+---
+
+{enabled && (
+  <>
+    <script
+      is:inline
+      defer
+      data-domain={domain}
+      src="https://plausible.io/js/script.tagged-events.js"
+    ></script>
+
+    {/* Simple delegated click tracker for CTA events */}
+    <script is:inline>
+      {`
+        window.addEventListener('click', (event) => {
+          const target = event.target;
+          if (!(target instanceof HTMLElement)) return;
+          const el = target.closest('[data-analytics-event]');
+          if (!el) return;
+          const eventName = el.getAttribute('data-analytics-event');
+          const props = {
+            ab_variant: document.cookie.includes('ab=heroB') ? 'heroB' : 'heroA'
+          };
+          if (window.plausible && eventName) {
+            window.plausible(eventName, { props });
+          }
+        });
+      `}
+    </script>
+  </>
+)}

@@ -1,0 +1,101 @@
+---
+import { site } from "@content/site";
+
+const initialView: 'services' | 'products' = 'services';
+---
+
+<section class="bg-slate-950/70 border-y border-slate-800" id="offerings">
+  <div class="container py-12 space-y-6">
+    <header
+      class="flex flex-col gap-3 md:flex-row md:items-center md:justify-between"
+    >
+      <div>
+        <p
+          class="text-xs font-semibold uppercase tracking-[0.2em] text-industrial-orange"
+        >
+          Services & Systems
+        </p>
+        <h2 class="mt-2 text-xl font-semibold">
+          Choose how you think: services first, or systems first.
+        </h2>
+      </div>
+      <div
+        class="inline-flex items-center rounded-full border border-slate-700 bg-slate-900 p-1 text-xs"
+      >
+        <button
+          type="button"
+          class="tab-btn rounded-full px-3 py-1.5"
+          data-view="services"
+        >
+          Services
+        </button>
+        <button
+          type="button"
+          class="tab-btn rounded-full px-3 py-1.5"
+          data-view="products"
+        >
+          Product Systems
+        </button>
+      </div>
+    </header>
+
+    <div id="services-view" class="grid gap-4 md:grid-cols-3">
+      {
+        site.capabilities.map((c) => (
+          <article class="rounded-2xl border border-slate-800 bg-slate-900/70 p-4">
+            <h3 class="text-sm font-semibold text-white">{c.title}</h3>
+            <p class="mt-2 text-xs text-slate-300">{c.description}</p>
+          </article>
+        ))
+      }
+    </div>
+
+    <div id="products-view" class="hidden grid-cols-3 gap-4 md:grid">
+      {
+        site.productSystems.map((p) => (
+          <article class="rounded-2xl border border-slate-800 bg-slate-900/70 p-4">
+            <h3 class="text-sm font-semibold text-white">{p.name}</h3>
+            <p class="mt-1 text-[11px] uppercase tracking-wide text-slate-400">
+              {p.type}
+            </p>
+            <p class="mt-2 text-xs text-slate-300">{p.description}</p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+
+  <script is:inline define:vars={{ initialView }}>
+  const servicesView = document.getElementById('services-view');
+  const productsView = document.getElementById('products-view');
+  const buttons = Array.from(
+    document.querySelectorAll('button.tab-btn')
+  );
+
+  function setView(view) {
+    if (!servicesView || !productsView) return;
+
+    const isServices = view === 'services';
+    servicesView.classList.toggle('hidden', !isServices);
+    productsView.classList.toggle('hidden', isServices);
+
+    buttons.forEach((btn) => {
+      const active = btn.dataset.view === view;
+      btn.classList.toggle('bg-industrial-blue', active);
+      btn.classList.toggle('text-white', active);
+      btn.classList.toggle('text-slate-400', !active);
+    });
+  }
+
+  // initialView is injected from the frontmatter by define:vars
+  setView(initialView);
+
+  buttons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const view = btn.dataset.view === 'products' ? 'products' : 'services';
+      setView(view);
+    });
+  });
+</script>
+
+</section>

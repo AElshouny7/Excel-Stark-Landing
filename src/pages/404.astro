@@ -1,0 +1,21 @@
+---
+import Layout from '@components/Layout.astro';
+---
+
+<Layout title="Page not found" path="/404">
+  <section class="bg-slate-950">
+    <div class="container py-24 text-center space-y-4">
+      <h1 class="text-3xl font-semibold text-white">Page not found.</h1>
+      <p class="text-sm text-slate-300 max-w-xl mx-auto">
+        The page you’re looking for doesn’t exist. If you were expecting a case study or document,
+        please reach out via the contact form and we will send it directly.
+      </p>
+      <a
+        href="/"
+        class="inline-flex items-center rounded-full bg-industrial-orange px-5 py-2 text-xs font-semibold uppercase tracking-wide text-white"
+      >
+        Back to main page
+      </a>
+    </div>
+  </section>
+</Layout>

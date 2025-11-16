@@ -1,1 +1,21 @@
-n
+---
+import Layout from '@components/Layout.astro';
+---
+
+<Layout title="Thank you" path="/thanks">
+  <section class="bg-slate-950">
+    <div class="container py-24 text-center space-y-4">
+      <h1 class="text-3xl font-semibold text-white">Thank you for contacting Excel Stark.</h1>
+      <p class="text-sm text-slate-300 max-w-xl mx-auto">
+        Your leak details were received. Our engineering team will review the information and
+        respond with a standards-based repair concept as soon as possible.
+      </p>
+      <a
+        href="/"
+        class="inline-flex items-center rounded-full bg-industrial-orange px-5 py-2 text-xs font-semibold uppercase tracking-wide text-white"
+      >
+        Back to main page
+      </a>
+    </div>
+  </section>
+</Layout>

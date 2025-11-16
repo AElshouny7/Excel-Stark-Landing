@@ -1,0 +1,58 @@
+---
+import PlausibleAnalytics from './PlausibleAnalytics.astro';
+import Header from './Header.astro';
+import Footer from './Footer.astro';
+import { buildTitle, buildDescription, buildCanonicalUrl, buildOrganizationJsonLd } from '@utils/seo';
+import { site } from '@content/site';
+
+const { title, description, path = '/' } = Astro.props as {
+  title?: string;
+  description?: string;
+  path?: string;
+};
+
+const fullTitle = buildTitle(title);
+const metaDescription = description ?? buildDescription();
+const origin = Astro.site?.toString() ?? 'https://excelstark.com';
+const canonical = buildCanonicalUrl(origin, path);
+const orgJsonLd = buildOrganizationJsonLd(origin);
+---
+
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <title>{fullTitle}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={metaDescription} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={metaDescription} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content="Excel Stark" />
+
+    <meta name="theme-color" content="#1E3A8A" />
+
+    <script type="application/ld+json" is:inline>
+      {JSON.stringify(orgJsonLd)}
+    </script>
+
+    <PlausibleAnalytics />
+  </head>
+  <body class="bg-industrial-steel text-slate-100">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-black text-white px-3 py-2 rounded"
+    >
+      Skip to main content
+    </a>
+    <Header nav={site.nav} />
+    <main id="main" class="min-h-screen">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
