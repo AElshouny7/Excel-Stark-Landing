@@ -63,11 +63,15 @@ export const onRequest: MiddlewareHandler = async (context, next) => {
   );
   const csp = [
     "default-src 'self'",
-    "script-src 'self' 'unsafe-inline' https://js.hcaptcha.com https://hcaptcha.com /_vercel/insights/script.js",
+    // Allow inline scripts for JSON-LD + hydration, hCaptcha domains & Vercel analytics
+    "script-src 'self' 'unsafe-inline' https://hcaptcha.com https://*.hcaptcha.com https://vercel.live",
     "style-src 'self' 'unsafe-inline'",
-    "img-src 'self' data: https://hcaptcha.com",
-    "connect-src 'self' https://hcaptcha.com https://js.hcaptcha.com",
-    "frame-src https://hcaptcha.com",
+    // Images from self, data URIs, and any hcaptcha subdomains (newassets, etc.)
+    "img-src 'self' data: https://hcaptcha.com https://*.hcaptcha.com",
+    // Connections for API calls (captcha verify, analytics) - add plausible if used
+    "connect-src 'self' https://hcaptcha.com https://*.hcaptcha.com",
+    // Frames needed for hCaptcha widget
+    "frame-src https://hcaptcha.com https://*.hcaptcha.com",
     "font-src 'self' data:",
   ].join("; ");
   res.headers.set("Content-Security-Policy", csp);
