@@ -26,6 +26,7 @@ const faqJsonLd = buildFaqJsonLd(origin, site.faqs);
         <details
           class="group rounded-2xl border border-slate-800 bg-slate-900/70 p-4"
           {...(index === 0 ? { open: true } : {})}
+          data-faq
         >
           <summary class="flex cursor-pointer items-center justify-between gap-4 text-sm font-medium text-white">
             <span>{faq.question}</span>
@@ -42,5 +43,19 @@ const faqJsonLd = buildFaqJsonLd(origin, site.faqs);
 
   <script type="application/ld+json" is:inline>
     {JSON.stringify(faqJsonLd)}
+  </script>
+  <script is:inline>
+    // Ensure only one FAQ detail stays open at a time
+    const faqContainer = document.currentScript?.previousElementSibling?.previousElementSibling;
+    const detailsList = document.querySelectorAll('section#faq [data-faq]');
+    detailsList.forEach(d => {
+      d.addEventListener('toggle', () => {
+        if (d.open) {
+          detailsList.forEach(other => {
+            if (other !== d && other.open) other.open = false;
+          });
+        }
+      });
+    });
   </script>
 </section>

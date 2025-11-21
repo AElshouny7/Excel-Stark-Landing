@@ -1,9 +1,9 @@
 ---
 import PlausibleAnalytics from './PlausibleAnalytics.astro';
+import { site } from '@content/site';
 import Header from './Header.astro';
 import Footer from './Footer.astro';
 import { buildTitle, buildDescription, buildCanonicalUrl, buildOrganizationJsonLd } from '@utils/seo';
-import { site } from '@content/site';
 
 const { title, description, path = '/' } = Astro.props as {
   title?: string;
@@ -16,6 +16,15 @@ const metaDescription = description ?? buildDescription();
 const origin = Astro.site?.toString() ?? 'https://excelstark.com';
 const canonical = buildCanonicalUrl(origin, path);
 const orgJsonLd = buildOrganizationJsonLd(origin);
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: site.faqs.map(f => ({
+    '@type': 'Question',
+    name: f.question,
+    acceptedAnswer: { '@type': 'Answer', text: f.answer }
+  }))
+};
 ---
 
 <!DOCTYPE html>
@@ -33,12 +42,26 @@ const orgJsonLd = buildOrganizationJsonLd(origin);
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonical} />
     <meta property="og:site_name" content="Excel Stark" />
+    <meta property="og:image" content="{origin}/hero-pipe.png" />
+    <meta property="og:image:alt" content="Engineer measuring composite wrap repair on pipeline" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1600" />
+    <meta property="og:image:height" content="900" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={metaDescription} />
+    <meta name="twitter:image" content="{origin}/hero-pipe.png" />
+
+    <link rel="preload" as="image" href="/hero-pipe.png" imagesrcset="/hero-pipe.png" />
+    <link rel="dns-prefetch" href="https://hcaptcha.com" />
+    <link rel="dns-prefetch" href="https://js.hcaptcha.com" />
 
     <meta name="theme-color" content="#1E3A8A" />
 
-    <script type="application/ld+json" is:inline>
-      {JSON.stringify(orgJsonLd)}
-    </script>
+    <script type="application/ld+json" is:inline>{JSON.stringify(orgJsonLd)}</script>
+    <script type="application/ld+json" is:inline>{JSON.stringify(faqJsonLd)}</script>
+    <script defer src="/_vercel/insights/script.js"></script>
 
     <PlausibleAnalytics />
   </head>
@@ -49,8 +72,8 @@ const orgJsonLd = buildOrganizationJsonLd(origin);
     >
       Skip to main content
     </a>
-    <Header nav={site.nav} />
-    <main id="main" class="min-h-screen">
+    <Header nav={site.nav} aria-label="Primary" />
+    <main id="main" class="min-h-screen" role="main">
       <slot />
     </main>
     <Footer />

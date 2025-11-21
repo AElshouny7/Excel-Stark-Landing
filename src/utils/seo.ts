@@ -22,7 +22,7 @@ export function buildOrganizationJsonLd(origin: string) {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'Excel Stark',
-    url: origin,
+    url: 'https://excelstark.com',
     slogan: 'The Right Repair — Every Time',
     description: buildDescription(),
     areaServed: ['Worldwide', 'Middle East'],

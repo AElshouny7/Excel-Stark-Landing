@@ -159,6 +159,14 @@ export default function ContactForm({ siteKey }: ContactFormProps) {
           className="space-y-4 rounded-2xl border border-slate-800 bg-slate-900/70 p-6"
           noValidate
         >
+          {/* Honeypot field */}
+          <div className="hidden" aria-hidden="true">
+            <label>
+              Website
+              <input name="website" tabIndex={-1} autoComplete="off" />
+            </label>
+          </div>
+
           <div className="grid gap-4 md:grid-cols-2">
             <div>
               <label
@@ -323,12 +331,20 @@ export default function ContactForm({ siteKey }: ContactFormProps) {
             </p>
           )}
 
-          {status === "success" ? (
-            <p className="text-sm text-emerald-400" role="status">
-              Thanks. Your leak details were received and an engineer will
-              revert shortly.
-            </p>
-          ) : (
+          <div aria-live="polite" className="min-h-[1.5rem]">
+            {status === "success" && (
+              <p className="text-sm text-emerald-400" role="status">
+                Thanks. Your leak details were received and an engineer will
+                revert shortly.
+              </p>
+            )}
+            {status === "error" && errors.form && (
+              <p className="text-sm text-industrial-danger" role="alert">
+                {errors.form}
+              </p>
+            )}
+          </div>
+          {status !== "success" && (
             <button
               type="submit"
               disabled={status === "submitting"}

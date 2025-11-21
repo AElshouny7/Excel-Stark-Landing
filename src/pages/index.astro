@@ -21,12 +21,21 @@ const hero = site.hero[abVariant];
   <section
     class="relative bg-gradient-to-b from-slate-950 via-slate-950 to-slate-900 overflow-hidden"
   >
-    <img
-      src="/hero-pipe.png"
-      alt="Engineer measuring composite wrap repair on a coated pipeline using a tape measure and dial gauge during inspection."
-      class="absolute inset-0 h-full w-full object-cover opacity-25 pointer-events-none select-none"
-      loading="lazy"
-    />
+    <picture
+      class="absolute inset-0 h-full w-full pointer-events-none select-none opacity-25"
+    >
+      <source srcset="/hero-pipe.avif" type="image/avif" />
+      <source srcset="/hero-pipe.webp" type="image/webp" />
+      <img
+        src="/hero-pipe.png"
+        width="1600"
+        height="900"
+        alt="Engineer measuring composite wrap repair on a coated pipeline using a tape measure and dial gauge during inspection."
+        class="h-full w-full object-cover"
+        loading="eager"
+        decoding="async"
+      />
+    </picture>
     <div
       class="relative container py-16 lg:py-24 grid gap-10 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] items-center"
     >

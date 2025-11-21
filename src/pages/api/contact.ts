@@ -9,6 +9,7 @@ interface ContactPayload {
   details?: string;
   urgency?: string;
   hcaptchaToken?: string;
+  website?: string; // honeypot
 }
 
 export const POST: APIRoute = async ({ request, clientAddress }) => {
@@ -16,6 +17,13 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     const env = import.meta.env;
     const hcaptchaSecret = env.HCAPTCHA_SECRET;
     const body = (await request.json().catch(() => ({}))) as ContactPayload;
+
+    // Honeypot check (bot detection)
+    if ((body as any).website) {
+      return new Response(JSON.stringify({ ok: false, message: "Rejected" }), {
+        status: 400,
+      });
+    }
 
     // Field validation (retain existing payload requirements)
     const errors: string[] = [];
