@@ -1,9 +1,10 @@
-import { defineConfig } from 'astro/config';
-import tailwind from '@astrojs/tailwind';
-import sitemap from '@astrojs/sitemap';
-import vercel from '@astrojs/vercel';
+import { defineConfig } from "astro/config";
+import tailwind from "@astrojs/tailwind";
+import sitemap from "@astrojs/sitemap";
+import vercel from "@astrojs/vercel";
+import react from "@astrojs/react";
 
-const SITE = process.env.SITE || 'https://excelstark.com';
+const SITE = process.env.SITE || "https://excelstark.com";
 
 export default defineConfig({
   site: SITE,
@@ -14,9 +15,10 @@ export default defineConfig({
       },
     }),
     sitemap(),
+    react(),
   ],
   // Astro 4 only supports "static" or "server"
-  output: 'server',
+  output: "server",
   adapter: vercel(),
   server: {
     host: true, // binds to 0.0.0.0

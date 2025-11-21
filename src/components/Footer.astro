@@ -1,10 +1,15 @@
+---
+import { site } from "../content/site";
+const phoneHref = "tel:" + site.phone.replace(/[^+\d]/g, "");
+---
+
 <footer class="border-t border-slate-800 bg-slate-950">
   <div class="container py-10 grid gap-8 md:grid-cols-3 text-sm">
     <div>
       <p class="font-semibold">Excel Stark</p>
       <p class="mt-2 text-slate-400">
-        The Right Repair — Every Time. Online leak sealing, composite wrapping and engineered
-        repairs for critical assets.
+        The Right Repair — Every Time. Online leak sealing, composite wrapping
+        and engineered repairs for critical assets.
       </p>
     </div>
     <div>
@@ -16,16 +21,24 @@
       </ul>
     </div>
     <div>
-      <p class="font-semibold">Downloads</p>
+      <p class="font-semibold">Contact</p>
       <ul class="mt-2 space-y-1 text-slate-400">
-        <li><a href="/excel-stark-product-deck.pdf">Product Deck (PDF)</a></li>
-        <li><a href="/excel-stark-iso-compliance.pdf">Compliance Overview</a></li>
+        <li><a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a></li>
+        <li><a href={phoneHref}>{site.phone}</a></li>
+        <li>
+          <a href={site.address.maps} target="_blank" rel="noopener"
+            >{site.address.text}</a>
+        </li>
       </ul>
     </div>
   </div>
   <div class="border-t border-slate-800">
-    <div class="container flex flex-col md:flex-row items-center justify-between py-4 text-xs text-slate-500 gap-2">
-      <span>© {new Date().getFullYear()} Excel Stark. All rights reserved.</span>
+    <div
+      class="container flex flex-col md:flex-row items-center justify-between py-4 text-xs text-slate-500 gap-2"
+    >
+      <span
+        >© {new Date().getFullYear()} Excel Stark. All rights reserved.</span
+      >
       <span>Made for engineers, by leak sealing specialists.</span>
     </div>
   </div>
