@@ -1,11 +1,29 @@
 ---
 import { site } from "@content/site";
 
-const initialView: 'services' | 'products' = 'services';
+const initialView: "services" | "products" = "services";
 ---
 
-<section class="bg-slate-950/70 border-y border-slate-800" id="offerings">
-  <div class="container py-12 space-y-6">
+<section
+  class="relative bg-slate-950/70 border-y border-slate-800 overflow-hidden"
+  id="offerings"
+>
+  <picture
+    class="absolute inset-0 h-full w-full opacity-20 pointer-events-none select-none"
+  >
+    <source srcset="/hero-composite-closeup.avif" type="image/avif" />
+    <source srcset="/hero-composite-closeup.webp" type="image/webp" />
+    <img
+      src="/hero-composite-closeup.png"
+      width="1600"
+      height="900"
+      alt="Pipeline surface background for services and systems section"
+      class="h-full w-full object-cover"
+      loading="lazy"
+      decoding="async"
+    />
+  </picture>
+  <div class="relative container py-12 space-y-6">
     <header
       class="flex flex-col gap-3 md:flex-row md:items-center md:justify-between"
     >
@@ -66,36 +84,33 @@ const initialView: 'services' | 'products' = 'services';
   </div>
 
   <script is:inline define:vars={{ initialView }}>
-  const servicesView = document.getElementById('services-view');
-  const productsView = document.getElementById('products-view');
-  const buttons = Array.from(
-    document.querySelectorAll('button.tab-btn')
-  );
+    const servicesView = document.getElementById("services-view");
+    const productsView = document.getElementById("products-view");
+    const buttons = Array.from(document.querySelectorAll("button.tab-btn"));
 
-  function setView(view) {
-    if (!servicesView || !productsView) return;
+    function setView(view) {
+      if (!servicesView || !productsView) return;
 
-    const isServices = view === 'services';
-    servicesView.classList.toggle('hidden', !isServices);
-    productsView.classList.toggle('hidden', isServices);
+      const isServices = view === "services";
+      servicesView.classList.toggle("hidden", !isServices);
+      productsView.classList.toggle("hidden", isServices);
+
+      buttons.forEach((btn) => {
+        const active = btn.dataset.view === view;
+        btn.classList.toggle("bg-industrial-blue", active);
+        btn.classList.toggle("text-white", active);
+        btn.classList.toggle("text-slate-400", !active);
+      });
+    }
+
+    // initialView is injected from the frontmatter by define:vars
+    setView(initialView);
 
     buttons.forEach((btn) => {
-      const active = btn.dataset.view === view;
-      btn.classList.toggle('bg-industrial-blue', active);
-      btn.classList.toggle('text-white', active);
-      btn.classList.toggle('text-slate-400', !active);
+      btn.addEventListener("click", () => {
+        const view = btn.dataset.view === "products" ? "products" : "services";
+        setView(view);
+      });
     });
-  }
-
-  // initialView is injected from the frontmatter by define:vars
-  setView(initialView);
-
-  buttons.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const view = btn.dataset.view === 'products' ? 'products' : 'services';
-      setView(view);
-    });
-  });
-</script>
-
+  </script>
 </section>

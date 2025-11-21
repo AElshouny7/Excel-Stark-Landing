@@ -24,10 +24,10 @@ const hero = site.hero[abVariant];
     <picture
       class="absolute inset-0 h-full w-full pointer-events-none select-none opacity-25"
     >
-      <source srcset="/hero-pipe.avif" type="image/avif" />
-      <source srcset="/hero-pipe.webp" type="image/webp" />
+      <source srcset="/hero-repair-inspection.avif" type="image/avif" />
+      <source srcset="/hero-repair-inspection.webp" type="image/webp" />
       <img
-        src="/hero-pipe.png"
+        src="/hero-repair-inspection.png"
         width="1600"
         height="900"
         alt="Engineer measuring composite wrap repair on a coated pipeline using a tape measure and dial gauge during inspection."
@@ -98,8 +98,23 @@ const hero = site.hero[abVariant];
   <LogoCloud />
   <MetricsStrip />
 
-  <section id="capabilities" class="bg-slate-950">
-    <div class="container py-16 space-y-8">
+  <section id="capabilities" class="relative bg-slate-950 overflow-hidden">
+    <picture
+      class="absolute inset-0 h-full w-full opacity-20 pointer-events-none select-none"
+    >
+      <source srcset="/hero-offshore-repair.avif" type="image/avif" />
+      <source srcset="/hero-offshore-repair.webp" type="image/webp" />
+      <img
+        src="/hero-offshore-repair.png"
+        width="1600"
+        height="900"
+        alt="Composite leak sealing and repair systems background texture"
+        class="h-full w-full object-cover"
+        loading="lazy"
+        decoding="async"
+      />
+    </picture>
+    <div class="relative container py-16 space-y-8">
       <header class="max-w-2xl">
         <p
           class="text-xs font-semibold uppercase tracking-[0.2em] text-industrial-orange"

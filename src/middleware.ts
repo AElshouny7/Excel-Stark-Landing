@@ -68,8 +68,8 @@ export const onRequest: MiddlewareHandler = async (context, next) => {
     "style-src 'self' 'unsafe-inline'",
     // Images from self, data URIs, and any hcaptcha subdomains (newassets, etc.)
     "img-src 'self' data: https://hcaptcha.com https://*.hcaptcha.com",
-    // Connections for API calls (captcha verify, analytics) - add plausible if used
-    "connect-src 'self' https://hcaptcha.com https://*.hcaptcha.com",
+    // Connections for API calls (captcha verify, analytics, vitals)
+    "connect-src 'self' https://hcaptcha.com https://*.hcaptcha.com https://vitals.vercel-insights.com",
     // Frames needed for hCaptcha widget
     "frame-src https://hcaptcha.com https://*.hcaptcha.com",
     "font-src 'self' data:",

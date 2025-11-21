@@ -1,42 +1,64 @@
 ---
-import { site } from '@content/site';
+import { site } from "@content/site";
 ---
 
-<section id="cases" class="bg-slate-950/70">
-  <div class="container py-16 space-y-8">
+<section id="cases" class="relative bg-slate-950/70 overflow-hidden">
+  <picture
+    class="absolute inset-0 h-full w-full opacity-20 pointer-events-none select-none"
+  >
+    <source srcset="/hero-trench-installation.avif" type="image/avif" />
+    <source srcset="/hero-trench-installation.webp" type="image/webp" />
+    <img
+      src="/hero-trench-installation.png"
+      width="1600"
+      height="900"
+      alt="Offshore composite repair context background for case studies section"
+      class="h-full w-full object-cover"
+      loading="lazy"
+      decoding="async"
+    />
+  </picture>
+  <div class="relative container py-16 space-y-8">
     <header class="max-w-2xl">
-      <p class="text-xs font-semibold uppercase tracking-[0.2em] text-industrial-orange">
+      <p
+        class="text-xs font-semibold uppercase tracking-[0.2em] text-industrial-orange"
+      >
         Case Studies
       </p>
       <h2 class="mt-2 text-2xl font-semibold">
         From fire water tanks to 210 barg crude pipelines.
       </h2>
       <p class="mt-3 text-sm text-slate-300">
-        Real-world references drawn from tank farms, refineries, pipelines and flare systems – based
-        on composite repairs and on-line leak sealing techniques used by Excel Stark and its
-        technology partners.
+        Real-world references drawn from tank farms, refineries, pipelines and
+        flare systems – based on composite repairs and on-line leak sealing
+        techniques used by Excel Stark and its technology partners.
       </p>
     </header>
 
     <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-      {site.caseStudies.map((cs) => (
-        <article class="flex flex-col gap-3 rounded-2xl border border-slate-800 bg-slate-900/60 p-5">
-          <p class="text-[11px] uppercase tracking-wide text-slate-400">
-            {cs.assetType} • {cs.region}
-          </p>
-          <h3 class="text-sm font-semibold">{cs.title}</h3>
-          <p class="text-xs text-slate-300">{cs.challenge}</p>
-          <p class="text-[11px] text-slate-400">
-            <span class="font-semibold text-slate-200">Conditions:</span> {cs.conditions}
-          </p>
-          <p class="text-[11px] text-slate-400">
-            <span class="font-semibold text-slate-200">Solution:</span> {cs.solution}
-          </p>
-          <p class="text-[11px] text-slate-400">
-            <span class="font-semibold text-slate-200">Outcome:</span> {cs.outcome}
-          </p>
-        </article>
-      ))}
+      {
+        site.caseStudies.map((cs) => (
+          <article class="flex flex-col gap-3 rounded-2xl border border-slate-800 bg-slate-900/60 p-5">
+            <p class="text-[11px] uppercase tracking-wide text-slate-400">
+              {cs.assetType} • {cs.region}
+            </p>
+            <h3 class="text-sm font-semibold">{cs.title}</h3>
+            <p class="text-xs text-slate-300">{cs.challenge}</p>
+            <p class="text-[11px] text-slate-400">
+              <span class="font-semibold text-slate-200">Conditions:</span>{" "}
+              {cs.conditions}
+            </p>
+            <p class="text-[11px] text-slate-400">
+              <span class="font-semibold text-slate-200">Solution:</span>{" "}
+              {cs.solution}
+            </p>
+            <p class="text-[11px] text-slate-400">
+              <span class="font-semibold text-slate-200">Outcome:</span>{" "}
+              {cs.outcome}
+            </p>
+          </article>
+        ))
+      }
     </div>
   </div>
 </section>
