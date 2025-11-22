@@ -29,7 +29,7 @@ const faqJsonLd = {
 ---
 
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="scroll-smooth dark transition-colors duration-300" data-theme>
   <head>
     <meta charset="utf-8" />
     <title>{fullTitle}</title>
@@ -62,11 +62,36 @@ const faqJsonLd = {
 
     <script type="application/ld+json" is:inline>{JSON.stringify(orgJsonLd)}</script>
     <script type="application/ld+json" is:inline>{JSON.stringify(faqJsonLd)}</script>
+    <!-- Theme initialization (runs early to avoid FOUC) -->
+    <script is:inline>
+      (function() {
+        try {
+          const stored = localStorage.getItem('theme');
+          if (stored === 'light') {
+            document.documentElement.classList.remove('dark');
+          } else if (stored === 'dark') {
+            document.documentElement.classList.add('dark');
+          } else {
+            // Use system preference first
+            const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+            if (prefersLight) {
+              document.documentElement.classList.remove('dark');
+              localStorage.setItem('theme', 'light');
+            } else {
+              document.documentElement.classList.add('dark');
+              localStorage.setItem('theme', 'dark');
+            }
+          }
+        } catch (e) {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
     <!-- Vercel & Plausible analytics -->
     <PlausibleAnalytics />
     <Analytics />
   </head>
-  <body class="bg-industrial-steel text-slate-100">
+  <body class="bg-white text-slate-800 dark:bg-industrial-steel dark:text-slate-100 transition-colors duration-300">
     <a
       href="#main"
       class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-black text-white px-3 py-2 rounded"

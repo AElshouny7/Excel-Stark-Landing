@@ -3,38 +3,45 @@ import { site } from "../content/site";
 const phoneHref = "tel:" + site.phone.replace(/[^+\d]/g, "");
 ---
 
-<footer class="border-t border-slate-800 bg-slate-950">
+<footer
+  class="border-t border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-950 transition-colors duration-300"
+>
   <div class="container py-10 grid gap-8 md:grid-cols-3 text-sm">
     <div>
-      <p class="font-semibold">Excel Stark</p>
-      <p class="mt-2 text-slate-400">
+      <p class="font-semibold text-slate-800 dark:text-slate-100">
+        Excel Stark
+      </p>
+      <p class="mt-2 text-slate-600 dark:text-slate-400">
         The Right Repair — Every Time. Online leak sealing, composite wrapping
         and engineered repairs for critical assets.
       </p>
     </div>
     <div>
-      <p class="font-semibold">Compliance & Standards</p>
-      <ul class="mt-2 space-y-1 text-slate-400">
+      <p class="font-semibold text-slate-800 dark:text-slate-100">
+        Compliance & Standards
+      </p>
+      <ul class="mt-2 space-y-1 text-slate-600 dark:text-slate-400">
         <li>ISO 24817 / ASME PCC-2</li>
         <li>API 653 / Pipeline design codes</li>
         <li>FEA-verified clamp & enclosure calculations</li>
       </ul>
     </div>
     <div>
-      <p class="font-semibold">Contact</p>
-      <ul class="mt-2 space-y-1 text-slate-400">
+      <p class="font-semibold text-slate-800 dark:text-slate-100">Contact</p>
+      <ul class="mt-2 space-y-1 text-slate-600 dark:text-slate-400">
         <li><a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a></li>
         <li><a href={phoneHref}>{site.phone}</a></li>
         <li>
           <a href={site.address.maps} target="_blank" rel="noopener"
-            >{site.address.text}</a>
+            >{site.address.text}</a
+          >
         </li>
       </ul>
     </div>
   </div>
-  <div class="border-t border-slate-800">
+  <div class="border-t border-slate-200 dark:border-slate-800">
     <div
-      class="container flex flex-col md:flex-row items-center justify-between py-4 text-xs text-slate-500 gap-2"
+      class="container flex flex-col md:flex-row items-center justify-between py-4 text-xs text-slate-600 dark:text-slate-500 gap-2"
     >
       <span
         >© {new Date().getFullYear()} Excel Stark. All rights reserved.</span

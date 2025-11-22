@@ -5,6 +5,20 @@
 /* Base reset + typography */
 :root {
   color-scheme: dark light;
+  --selection-bg: #1E3A8A;
+  /* industrial blue for light */
+  --selection-color: #ffffff;
+}
+
+.dark {
+  --selection-bg: #EF6C00;
+  /* industrial orange for dark */
+  --selection-color: #ffffff;
+}
+
+::selection {
+  background: var(--selection-bg);
+  color: var(--selection-color);
 }
 
 html {

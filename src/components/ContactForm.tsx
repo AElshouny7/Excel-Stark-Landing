@@ -131,22 +131,27 @@ export default function ContactForm({ siteKey }: ContactFormProps) {
   }
 
   return (
-    <section id="contact" className="bg-slate-950 border-t border-slate-800">
+    <section
+      id="contact"
+      className="border-t border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-950 transition-colors duration-300"
+    >
       <div className="container py-16 grid gap-10 lg:grid-cols-[1.2fr_1.5fr]">
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-industrial-orange">
             Contact
           </p>
-          <h2 className="mt-2 text-2xl font-semibold">
+          <h2 className="mt-2 text-2xl font-semibold text-slate-800 dark:text-white">
             {site.contact.headline}
           </h2>
-          <p className="mt-3 text-sm text-slate-300">{site.contact.subcopy}</p>
-          <ul className="mt-4 space-y-1 text-sm text-slate-400">
+          <p className="mt-3 text-sm text-slate-600 dark:text-slate-300">
+            {site.contact.subcopy}
+          </p>
+          <ul className="mt-4 space-y-1 text-sm text-slate-600 dark:text-slate-400">
             {site.contact.regions.map((r) => (
               <li key={r}>• {r}</li>
             ))}
           </ul>
-          <p className="mt-4 text-xs text-slate-500">
+          <p className="mt-4 text-xs text-slate-500 dark:text-slate-500">
             We aim to respond to urgent leaks on the same day. For true
             emergencies, please follow your site escalation protocol alongside
             this form.
@@ -156,7 +161,7 @@ export default function ContactForm({ siteKey }: ContactFormProps) {
         <form
           ref={formRef}
           onSubmit={onSubmit}
-          className="space-y-4 rounded-2xl border border-slate-800 bg-slate-900/70 p-6"
+          className="space-y-4 rounded-2xl border border-slate-200 bg-slate-50 p-6 transition-colors duration-300 dark:border-slate-800 dark:bg-slate-900/70"
           noValidate
         >
           {/* Honeypot field */}
@@ -171,7 +176,7 @@ export default function ContactForm({ siteKey }: ContactFormProps) {
             <div>
               <label
                 htmlFor="name"
-                className="text-xs font-semibold text-slate-200"
+                className="text-xs font-semibold text-slate-700 dark:text-slate-200"
               >
                 Full name
               </label>
@@ -181,7 +186,7 @@ export default function ContactForm({ siteKey }: ContactFormProps) {
                 type="text"
                 autoComplete="name"
                 required
-                className="mt-1 w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-white"
+                className="mt-1 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-800 dark:border-slate-700 dark:bg-slate-950 dark:text-white"
               />
               {errors.name && (
                 <p className="mt-1 text-[11px] text-industrial-danger">
@@ -192,7 +197,7 @@ export default function ContactForm({ siteKey }: ContactFormProps) {
             <div>
               <label
                 htmlFor="email"
-                className="text-xs font-semibold text-slate-200"
+                className="text-xs font-semibold text-slate-700 dark:text-slate-200"
               >
                 Work email
               </label>
@@ -202,7 +207,7 @@ export default function ContactForm({ siteKey }: ContactFormProps) {
                 type="email"
                 autoComplete="email"
                 required
-                className="mt-1 w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-white"
+                className="mt-1 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-800 dark:border-slate-700 dark:bg-slate-950 dark:text-white"
               />
               {errors.email && (
                 <p className="mt-1 text-[11px] text-industrial-danger">
@@ -216,7 +221,7 @@ export default function ContactForm({ siteKey }: ContactFormProps) {
             <div>
               <label
                 htmlFor="company"
-                className="text-xs font-semibold text-slate-200"
+                className="text-xs font-semibold text-slate-700 dark:text-slate-200"
               >
                 Company
               </label>
@@ -224,13 +229,13 @@ export default function ContactForm({ siteKey }: ContactFormProps) {
                 id="company"
                 name="company"
                 type="text"
-                className="mt-1 w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-white"
+                className="mt-1 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-800 dark:border-slate-700 dark:bg-slate-950 dark:text-white"
               />
             </div>
             <div>
               <label
                 htmlFor="region"
-                className="text-xs font-semibold text-slate-200"
+                className="text-xs font-semibold text-slate-700 dark:text-slate-200"
               >
                 Region
               </label>
@@ -238,7 +243,7 @@ export default function ContactForm({ siteKey }: ContactFormProps) {
                 id="region"
                 name="region"
                 required
-                className="mt-1 w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-white"
+                className="mt-1 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-800 dark:border-slate-700 dark:bg-slate-950 dark:text-white"
               >
                 <option value="">Select region</option>
                 {site.contact.regions.map((r) => (
@@ -258,7 +263,7 @@ export default function ContactForm({ siteKey }: ContactFormProps) {
           <div>
             <label
               htmlFor="details"
-              className="text-xs font-semibold text-slate-200"
+              className="text-xs font-semibold text-slate-700 dark:text-slate-200"
             >
               Leak / defect details
             </label>
@@ -267,7 +272,7 @@ export default function ContactForm({ siteKey }: ContactFormProps) {
               name="details"
               rows={4}
               required
-              className="mt-1 w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-white"
+              className="mt-1 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-800 dark:border-slate-700 dark:bg-slate-950 dark:text-white"
               placeholder="Line size, design/operating pressure & temperature, service, defect description, any UT/MFL data…"
             ></textarea>
             {errors.details && (
@@ -280,7 +285,7 @@ export default function ContactForm({ siteKey }: ContactFormProps) {
           <div>
             <label
               htmlFor="urgency"
-              className="text-xs font-semibold text-slate-200"
+              className="text-xs font-semibold text-slate-700 dark:text-slate-200"
             >
               Urgency
             </label>
@@ -288,7 +293,7 @@ export default function ContactForm({ siteKey }: ContactFormProps) {
               id="urgency"
               name="urgency"
               required
-              className="mt-1 w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-white"
+              className="mt-1 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-800 dark:border-slate-700 dark:bg-slate-950 dark:text-white"
             >
               <option value="">Select</option>
               <option value="emergency_24h">

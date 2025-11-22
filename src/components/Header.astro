@@ -3,15 +3,19 @@ import type { InferGetStaticPropsType } from "astro";
 const { nav } = Astro.props as { nav: { href: string; label: string }[] };
 ---
 
-<header class="border-b border-slate-800 bg-slate-950/80 backdrop-blur">
-  <div class="container flex items-center justify-between py-4">
+<header
+  class="relative z-50 border-b border-slate-200 bg-white/80 backdrop-blur dark:border-slate-800 dark:bg-slate-950/80"
+>
+  <div class="container flex items-center justify-between py-4 relative">
     <a href="/" class="flex items-center gap-2">
       <img
         src="/logo.png"
         alt="Excel Stark logo"
         class="h-20 md:h-22 lg:h-24 w-auto"
       />
-      <span class="text-base font-semibold tracking-wide text-slate-200">
+      <span
+        class="text-base font-semibold tracking-wide text-slate-700 dark:text-slate-200"
+      >
         Online Leak Sealing
       </span>
     </a>
@@ -20,7 +24,7 @@ const { nav } = Astro.props as { nav: { href: string; label: string }[] };
         nav.map((item) => (
           <a
             href={item.href}
-            class="text-slate-300 hover:text-white transition"
+            class="text-slate-600 hover:text-slate-900 transition dark:text-slate-300 dark:hover:text-white"
           >
             {item.label}
           </a>
@@ -33,6 +37,266 @@ const { nav } = Astro.props as { nav: { href: string; label: string }[] };
       >
         Request Support
       </a>
+      <button
+        type="button"
+        data-theme-toggle
+        aria-pressed="true"
+        aria-label="Toggle dark mode"
+        class="relative inline-flex h-8 w-8 items-center justify-center rounded-full border border-slate-300 bg-white text-xs font-medium text-slate-700 shadow-sm transition hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700"
+      >
+        <span
+          class="absolute inset-0 flex items-center justify-center transition-opacity duration-300 opacity-100"
+          data-icon-dark-wrapper
+        >
+          <svg
+            data-icon-dark
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-4 w-4"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 3c.132 0 .263.003.393.01a7.5 7.5 0 0 0 8.607 8.607A9 9 0 1 1 12 3Z"
+            ></path>
+          </svg>
+        </span>
+        <span
+          class="absolute inset-0 flex items-center justify-center transition-opacity duration-300 opacity-0"
+          data-icon-light-wrapper
+        >
+          <svg
+            data-icon-light
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-4 w-4"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 4.5v2m0 11v2m7.778-9h-2M6.222 11.5h-2M16.95 7.05l-1.414 1.414M8.464 15.536l-1.414 1.414M7.05 7.05l1.414 1.414M15.536 15.536l1.414 1.414M12 9.5a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z"
+            ></path>
+          </svg>
+        </span>
+      </button>
     </nav>
+    <!-- Mobile buttons -->
+    <div class="flex items-center gap-2 md:hidden">
+      <button
+        type="button"
+        data-mobile-menu-toggle
+        aria-expanded="false"
+        aria-controls="mobile-nav"
+        aria-label="Open menu"
+        class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-slate-300 bg-white text-slate-700 shadow-sm transition hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+      <button
+        type="button"
+        data-theme-toggle-mobile
+        aria-pressed="true"
+        aria-label="Toggle dark mode"
+        class="relative inline-flex h-9 w-9 items-center justify-center rounded-md border border-slate-300 bg-white text-xs font-medium text-slate-700 shadow-sm transition hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700"
+      >
+        <span
+          class="absolute inset-0 flex items-center justify-center transition-opacity duration-300 opacity-100"
+          data-icon-dark-wrapper-mobile
+        >
+          <svg
+            data-icon-dark-mobile
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-4 w-4"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+            ><path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 3c.132 0 .263.003.393.01a7.5 7.5 0 0 0 8.607 8.607A9 9 0 1 1 12 3Z"
+            ></path></svg
+          >
+        </span>
+        <span
+          class="absolute inset-0 flex items-center justify-center transition-opacity duration-300 opacity-0"
+          data-icon-light-wrapper-mobile
+        >
+          <svg
+            data-icon-light-mobile
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-4 w-4"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+            ><path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 4.5v2m0 11v2m7.778-9h-2M6.222 11.5h-2M16.95 7.05l-1.414 1.414M8.464 15.536l-1.414 1.414M7.05 7.05l1.414 1.414M15.536 15.536l1.414 1.414M12 9.5a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z"
+            ></path></svg
+          >
+        </span>
+      </button>
+    </div>
+    <!-- Mobile navigation panel -->
+    <div
+      id="mobile-nav"
+      class="md:hidden hidden absolute inset-x-0 top-full z-50 border-b border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-950"
+    >
+      <nav
+        class="container py-4 flex flex-col gap-4 text-sm"
+        aria-label="Mobile primary"
+      >
+        {
+          nav.slice(0, -1).map((item) => (
+            <a
+              href={item.href}
+              class="text-slate-700 hover:text-slate-900 transition dark:text-slate-300 dark:hover:text-white"
+              data-mobile-nav-link
+            >
+              {item.label}
+            </a>
+          ))
+        }
+        <a
+          href="#contact"
+          class="inline-flex items-center justify-center rounded-full bg-industrial-orange px-4 py-2 text-xs font-semibold uppercase tracking-wide text-white shadow-card"
+          data-analytics-event="nav_contact_mobile"
+        >
+          Request Support
+        </a>
+      </nav>
+    </div>
   </div>
+  <script is:inline>
+    (function () {
+      const btn = document.querySelector("[data-theme-toggle]");
+      if (btn) {
+        const iconDarkWrap = btn.querySelector("[data-icon-dark-wrapper]");
+        const iconLightWrap = btn.querySelector("[data-icon-light-wrapper]");
+        function update() {
+          const isDark = document.documentElement.classList.contains("dark");
+          btn.setAttribute("aria-pressed", String(isDark));
+          if (iconDarkWrap && iconLightWrap) {
+            iconDarkWrap.classList.toggle("opacity-0", !isDark);
+            iconDarkWrap.classList.toggle("opacity-100", isDark);
+            iconLightWrap.classList.toggle("opacity-0", isDark);
+            iconLightWrap.classList.toggle("opacity-100", !isDark);
+          }
+          btn.setAttribute(
+            "aria-label",
+            isDark ? "Switch to light mode" : "Switch to dark mode"
+          );
+        }
+        btn.addEventListener("click", () => {
+          document.documentElement.classList.toggle("dark");
+          const isDark = document.documentElement.classList.contains("dark");
+          try {
+            localStorage.setItem("theme", isDark ? "dark" : "light");
+          } catch (e) {}
+          update();
+        });
+        update();
+      }
+
+      // Mobile theme toggle
+      const mobileToggle = document.querySelector("[data-theme-toggle-mobile]");
+      if (mobileToggle) {
+        const darkWrapM = mobileToggle.querySelector(
+          "[data-icon-dark-wrapper-mobile]"
+        );
+        const lightWrapM = mobileToggle.querySelector(
+          "[data-icon-light-wrapper-mobile]"
+        );
+        function updateMobile() {
+          const isDark = document.documentElement.classList.contains("dark");
+          mobileToggle.setAttribute("aria-pressed", String(isDark));
+          if (darkWrapM && lightWrapM) {
+            darkWrapM.classList.toggle("opacity-0", !isDark);
+            darkWrapM.classList.toggle("opacity-100", isDark);
+            lightWrapM.classList.toggle("opacity-0", isDark);
+            lightWrapM.classList.toggle("opacity-100", !isDark);
+          }
+          mobileToggle.setAttribute(
+            "aria-label",
+            isDark ? "Switch to light mode" : "Switch to dark mode"
+          );
+        }
+        mobileToggle.addEventListener("click", () => {
+          document.documentElement.classList.toggle("dark");
+          const isDark = document.documentElement.classList.contains("dark");
+          try {
+            localStorage.setItem("theme", isDark ? "dark" : "light");
+          } catch (e) {}
+          // sync desktop (if present) then update mobile
+          if (btn) {
+            const evtIsDark =
+              document.documentElement.classList.contains("dark");
+            try {
+              localStorage.setItem("theme", evtIsDark ? "dark" : "light");
+            } catch (e) {}
+          }
+          updateMobile();
+        });
+        updateMobile();
+      }
+
+      // Mobile menu toggle logic
+      const menuBtn = document.querySelector("[data-mobile-menu-toggle]");
+      const mobileMenu = document.getElementById("mobile-nav");
+      if (menuBtn && mobileMenu) {
+        function setMenu(open) {
+          if (open) {
+            mobileMenu.classList.remove("hidden");
+          } else {
+            mobileMenu.classList.add("hidden");
+          }
+          menuBtn.setAttribute("aria-expanded", String(open));
+          menuBtn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+          document.body.classList.toggle("overflow-hidden", open);
+        }
+        menuBtn.addEventListener("click", () => {
+          const isOpen = menuBtn.getAttribute("aria-expanded") === "true";
+          setMenu(!isOpen);
+        });
+        mobileMenu
+          .querySelectorAll("[data-mobile-nav-link]")
+          .forEach((link) => {
+            link.addEventListener("click", () => setMenu(false));
+          });
+        document.addEventListener("click", (e) => {
+          if (!mobileMenu.contains(e.target) && !menuBtn.contains(e.target)) {
+            if (menuBtn.getAttribute("aria-expanded") === "true")
+              setMenu(false);
+          }
+        });
+        document.addEventListener("keyup", (e) => {
+          if (
+            e.key === "Escape" &&
+            menuBtn.getAttribute("aria-expanded") === "true"
+          )
+            setMenu(false);
+        });
+      }
+    })();
+  </script>
 </header>
